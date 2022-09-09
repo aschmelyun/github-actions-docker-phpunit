@@ -5,3 +5,12 @@ jobs:
   run-tests:
     name: Run PHPUnit tests
     runs-on: ubuntu-latest
+    container:
+      image: composer:latest
+      volumes:
+        - my-app:/app
+    steps:
+      - name: Running composer install
+        run: composer install
+      - name: Running phpunit
+        run: ./vendor/bin/phpunit tests
