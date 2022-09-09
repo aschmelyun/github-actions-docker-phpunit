@@ -8,8 +8,10 @@ jobs:
     container:
       image: composer:latest
       volumes:
-        - my-app:/app
+        - ${{ github.workspace }}:/app
     steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
       - name: Running composer install
         run: composer install
       - name: Running phpunit
